@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MUSICAL SYNDICATE — THE STAGE IS YOURS | ALPHA BY RADAR</title>
+<meta name="description" content="The nightlife industry works in separate pieces. ALPHA brings the people, problems, opportunities, technology and music into one room. Free entry. Registration required.">
+<meta property="og:title" content="MUSICAL SYNDICATE — THE STAGE IS YOURS">
+<meta property="og:description" content="Join ALPHA and request your complimentary MUSICAL SYNDICATE pass. Free entry. Registration required. No registration — no entry.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://join-alphabyradar.netlify.app/">
+<meta property="og:image" content="https://join-alphabyradar.netlify.app/assets/alpha-logo-full.png">
+<meta property="og:image:width" content="1024">
+<meta property="og:image:height" content="1515">
+<meta property="og:image:type" content="image/png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="MUSICAL SYNDICATE — THE STAGE IS YOURS">
+<meta name="twitter:description" content="Join ALPHA and request your complimentary MUSICAL SYNDICATE pass. Free entry. Registration required.">
+<meta name="twitter:image" content="https://join-alphabyradar.netlify.app/assets/alpha-logo-full.png">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/favicon-180.png">
+<link rel="icon" type="image/png" sizes="512x512" href="assets/favicon-512.png">
+<style>
+/* ALPHA BY RADAR — Black · Chrome Silver · Deep Red (sparingly). Cinematic, minimal. */
+:root{
+  --black:#070708; --panel:#0e0e10; --line:#1c1c20;
+  --silver:#c7c9d1; --silver-dim:#8a8c96; --silver-faint:#55575f;
+  --red:#b3121a; --red-dim:#3a0d10;
+  --mono:'Consolas','JetBrains Mono',monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+html{scroll-behavior:smooth;}
+body{background:var(--black);color:var(--silver);font-family:'Inter','SF Pro Display',system-ui,sans-serif;line-height:1.6;overflow-x:hidden;}
+.wrap{max-width:680px;margin:0 auto;padding:0 22px;position:relative;z-index:1;}
+a{color:var(--silver);}
+
+/* ambient radar scan line — behind all content */
+.scan-line-wrap{position:fixed;inset:0;overflow:hidden;pointer-events:none;z-index:0;}
+.scan-line{position:absolute;left:0;width:100%;height:2px;
+  background:linear-gradient(90deg,transparent,rgba(255,40,45,.95) 15%,rgba(255,90,80,1) 50%,rgba(255,40,45,.95) 85%,transparent);
+  box-shadow:0 0 22px 3px rgba(255,30,35,.65),0 0 6px 1px rgba(255,255,255,.5);
+  animation:scanSweep 8s linear infinite;}
+@keyframes scanSweep{
+  0%{top:-1%;opacity:0;}
+  6%{opacity:.95;}
+  50%{opacity:.95;}
+  94%{opacity:0;}
+  100%{top:101%;opacity:0;}
+}
+@media (prefers-reduced-motion: reduce){
+  .scan-line{display:none;}
+}
+
+/* header */
+header{padding:26px 0 0;text-align:center;position:relative;z-index:1;}
+.wordmark{font-family:var(--mono);font-size:12px;letter-spacing:.55em;color:var(--silver);text-transform:uppercase;}
+.wordmark b{color:var(--red);font-weight:400;}
+.brand-mark{width:56px;height:56px;display:block;margin:0 auto 12px;}
+
+/* hero */
+.hero{padding:64px 0 40px;text-align:center;}
+.case{font-family:var(--mono);font-size:10px;letter-spacing:.4em;color:var(--silver-faint);text-transform:uppercase;margin-bottom:22px;}
+h1{font-size:clamp(38px,10vw,64px);font-weight:800;letter-spacing:.04em;line-height:1.02;color:#f2f3f6;text-transform:uppercase;}
+.tagline{font-size:clamp(15px,4vw,19px);letter-spacing:.34em;color:var(--silver-dim);text-transform:uppercase;margin-top:14px;font-weight:300;}
+.divider{width:52px;height:1px;background:var(--red);margin:34px auto;}
+.meta{font-family:var(--mono);font-size:12px;letter-spacing:.18em;color:var(--silver-dim);text-transform:uppercase;line-height:2.3;}
+.meta b{color:var(--silver);font-weight:400;}
+
+/* entry rule */
+.rule{margin:38px auto 0;border:1px solid var(--line);background:var(--panel);padding:22px 16px;text-align:center;}
+.rule div{font-family:var(--mono);letter-spacing:.3em;text-transform:uppercase;line-height:2.4;}
+.rule .r1{font-size:15px;color:#f2f3f6;}
+.rule .r2{font-size:12px;color:var(--silver-dim);}
+.rule .r3{font-size:12px;color:var(--red);}
+
+/* cta */
+.cta{display:block;width:100%;margin-top:26px;padding:19px;text-align:center;background:var(--red);color:#fff;border:none;cursor:pointer;font-family:var(--mono);font-size:13px;letter-spacing:.32em;text-transform:uppercase;text-decoration:none;transition:background .2s;}
+.cta:hover{background:#d0161f;}
+.cta:not(.ghost){animation:ctaGlow 3.2s ease-in-out infinite;}
+.cta:not(.ghost):hover{animation:none;box-shadow:0 0 22px rgba(208,22,31,.7);}
+@keyframes ctaGlow{
+  0%,100%{box-shadow:0 0 0 rgba(179,18,26,0);}
+  50%{box-shadow:0 0 18px rgba(179,18,26,.55);}
+}
+@media (prefers-reduced-motion: reduce){
+  .cta:not(.ghost){animation:none;}
+}
+.cta.ghost{background:transparent;border:1px solid var(--line);color:var(--silver);}
+.cta.ghost:hover{border-color:var(--silver-faint);background:var(--panel);}
+
+/* sections */
+section{padding:54px 0 0;}
+h2{font-family:var(--mono);font-size:11px;letter-spacing:.42em;color:var(--red);text-transform:uppercase;margin-bottom:24px;font-weight:400;}
+.manifesto p{font-size:clamp(17px,4.6vw,22px);font-weight:300;color:#e8e9ee;line-height:1.75;margin-bottom:18px;letter-spacing:.01em;}
+.manifesto p b{font-weight:600;color:#fff;}
+
+/* chips */
+.chips{display:flex;flex-wrap:wrap;gap:9px;}
+.chip{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--silver-dim);border:1px solid var(--line);padding:9px 15px;}
+
+/* benefits */
+.benefits{border:1px solid var(--line);}
+.benefit{display:flex;gap:16px;padding:16px 18px;border-bottom:1px solid var(--line);align-items:baseline;}
+.benefit:last-child{border-bottom:none;}
+.benefit .n{font-family:var(--mono);font-size:10px;color:var(--red);letter-spacing:.1em;flex-shrink:0;width:30px;}
+.benefit .t{font-size:14px;color:var(--silver);}
+
+/* form */
+.formbox{border:1px solid var(--line);background:var(--panel);padding:30px 22px;margin-top:26px;}
+label{display:block;font-family:var(--mono);font-size:10px;letter-spacing:.3em;color:var(--silver-dim);text-transform:uppercase;margin:0 0 8px;}
+input[type=text],input[type=tel],input[type=email],select{
+  width:100%;padding:14px;background:#070708;border:1px solid var(--line);color:#f2f3f6;font-size:16px;font-family:inherit;outline:none;border-radius:0;-webkit-appearance:none;appearance:none;margin-bottom:20px;
+}
+select{background-image:linear-gradient(45deg,transparent 49%,var(--silver-faint) 50%),linear-gradient(135deg,var(--silver-faint) 50%,transparent 51%);background-position:calc(100% - 20px) 24px,calc(100% - 15px) 24px;background-size:5px 5px;background-repeat:no-repeat;}
+input:focus,select:focus{border-color:var(--red);}
+.consent{display:flex;gap:12px;align-items:flex-start;margin:4px 0 24px;}
+.consent input{width:18px;height:18px;margin-top:3px;accent-color:var(--red);flex-shrink:0;}
+.consent span{font-size:12.5px;color:var(--silver-dim);line-height:1.6;}
+.hint{font-family:var(--mono);font-size:10px;letter-spacing:.16em;color:var(--silver-faint);text-transform:uppercase;text-align:center;margin-top:14px;line-height:2;}
+.err{display:none;background:var(--red-dim);border:1px solid var(--red);color:#f2b8bb;font-size:13px;padding:12px 14px;margin-bottom:18px;}
+
+/* success */
+#success{display:none;text-align:center;padding:46px 18px;border:1px solid var(--line);background:var(--panel);margin-top:26px;}
+#success .ok{font-family:var(--mono);font-size:11px;letter-spacing:.4em;color:var(--red);text-transform:uppercase;}
+#success h3{font-size:26px;color:#f2f3f6;margin:16px 0 10px;letter-spacing:.06em;text-transform:uppercase;}
+#success p{font-size:14px;color:var(--silver-dim);max-width:420px;margin:0 auto 8px;}
+
+/* footer */
+footer{margin-top:70px;padding:34px 0 46px;border-top:1px solid var(--line);text-align:center;position:relative;z-index:1;}
+footer .fm{font-family:var(--mono);font-size:10px;letter-spacing:.34em;color:var(--silver-faint);text-transform:uppercase;line-height:2.6;}
+footer .fm b{color:var(--silver-dim);font-weight:400;}
+</style>
+</head>
+<body>
+
+<div class="scan-line-wrap" aria-hidden="true"><div class="scan-line"></div></div>
+
+<header>
+  <img class="brand-mark" src="assets/alpha-mark.png" alt="ALPHA BY RADAR" width="56" height="56">
+  <div class="wordmark">ALPHA <b>·</b> BY RADAR</div>
+</header>
+
+<div class="wrap">
+
+  <div class="hero">
+    <div class="case">ALPHA · EDITION 001 · INAUGURAL INDUSTRY ASSEMBLY</div>
+    <h1>Musical<br>Syndicate</h1>
+    <div class="tagline">The Stage Is Yours</div>
+    <div class="divider"></div>
+    <div class="meta">
+      <b>Thursday · 23 July 2026</b><br>
+      <a href="https://www.instagram.com/smokeyy.viibes" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;border-bottom:1px solid var(--silver-faint)">Smokeyy Viibes</a> · Bur Dubai · Dubai<br>
+      Doors &amp; timings — confirmed to registered members
+    </div>
+    <div class="rule">
+      <div class="r1">Free Entry</div>
+      <div class="r2">Registration Required</div>
+      <div class="r3">No Registration — No Entry</div>
+    </div>
+    <a class="cta" href="#join">Join ALPHA · Request Your Pass</a>
+    <a class="cta ghost" href="venues.html" style="margin-top:12px">Own a Venue?</a>
+  </div>
+
+  <section>
+    <h2>Season One — Every Thursday</h2>
+    <div class="benefits">
+      <div class="benefit"><span class="n">001</span><span class="t"><b style="color:#f2f3f6">Thursday · 23 July 2026</b> — Inaugural Edition</span></div>
+      <div class="benefit"><span class="n">002</span><span class="t">Thursday · 30 July 2026</span></div>
+      <div class="benefit"><span class="n">003</span><span class="t">Thursday · 6 August 2026</span></div>
+      <div class="benefit"><span class="n">004</span><span class="t">Thursday · 13 August 2026</span></div>
+    </div>
+  </section>
+
+  <section class="manifesto">
+    <h2>Why This Room Exists</h2>
+    <p>The nightlife industry works in separate pieces. DJs in one corner. Venues in another. Sound, light and technology behind closed doors. Promoters, media and sponsors all speaking different languages.</p>
+    <p><b>ALPHA brings the people, the problems, the opportunities, the technology and the music into one room.</b></p>
+    <p>And the stage is for the people who have not previously received access.</p>
+  </section>
+
+  <section>
+    <h2>Who This Room Is For</h2>
+    <div class="chips">
+      <span class="chip">Emerging DJs</span><span class="chip">Producers</span><span class="chip">Musicians</span>
+      <span class="chip">Venue Owners</span><span class="chip">Promoters</span><span class="chip">Hospitality Professionals</span>
+      <span class="chip">Audio · Lighting · Tech</span><span class="chip">Media &amp; Creators</span>
+      <span class="chip">Sponsors &amp; Partners</span><span class="chip">Serious Music Community</span><span class="chip">Underground Sounds</span>
+    </div>
+  </section>
+
+  <section>
+    <h2>What Membership Opens</h2>
+    <div class="benefits">
+      <div class="benefit"><span class="n">01</span><span class="t">Complimentary QR event pass — your name at the door</span></div>
+      <div class="benefit"><span class="n">02</span><span class="t">Priority invitations to future ALPHA sessions and assemblies</span></div>
+      <div class="benefit"><span class="n">03</span><span class="t">Artist and open-deck opportunities — perform, be heard, be seen</span></div>
+      <div class="benefit"><span class="n">04</span><span class="t">Industry networking — the people you have been trying to reach, in one room</span></div>
+      <div class="benefit"><span class="n">05</span><span class="t">Collaboration opportunities across music, venues and technology</span></div>
+      <div class="benefit"><span class="n">06</span><span class="t">Access to talks, sessions and workshops</span></div>
+      <div class="benefit"><span class="n">07</span><span class="t">Venue, sponsor and business introductions where relevant</span></div>
+      <div class="benefit"><span class="n">08</span><span class="t">Future community opportunities as ALPHA grows</span></div>
+    </div>
+  </section>
+
+  <section id="join">
+    <h2>Join ALPHA — 60 Seconds</h2>
+
+    <form id="joinForm" class="formbox" name="alpha-join" method="POST" data-netlify="true" netlify-honeypot="company">
+      <input type="hidden" name="form-name" value="alpha-join">
+      <p style="display:none"><label>Company <input name="company"></label></p>
+
+      <div class="err" id="errBox"></div>
+
+      <label for="f_name">Full Name *</label>
+      <input type="text" id="f_name" name="full_name" autocomplete="name" required>
+
+      <label for="f_phone">Mobile (WhatsApp) *</label>
+      <input type="tel" id="f_phone" name="phone" autocomplete="tel" placeholder="+971 5X XXX XXXX" required>
+
+      <label for="f_email">Email *</label>
+      <input type="email" id="f_email" name="email" autocomplete="email" required>
+
+      <label for="f_role">Industry Role *</label>
+      <select id="f_role" name="industry_role" required>
+        <option value="">Select…</option>
+        <option>DJ</option><option>Producer</option><option>Musician</option>
+        <option>Venue Owner / Manager</option><option>Promoter</option>
+        <option>Hospitality Professional</option><option>Audio / Lighting / Technology</option>
+        <option>Media / Content Creator</option><option>Sponsor / Partner</option>
+        <option>Music Community Member</option><option>Underground Sounds Community</option>
+      </select>
+
+      <label for="f_interest">Main Interest *</label>
+      <select id="f_interest" name="main_interest" required>
+        <option value="">Select…</option>
+        <option>Perform — open decks / jam</option><option>Industry networking</option>
+        <option>Talks, sessions &amp; learning</option><option>Collaboration</option>
+        <option>Sponsorship / partnership</option><option>Attend &amp; experience</option>
+      </select>
+
+      <div class="consent">
+        <input type="checkbox" id="f_consent" name="consent" value="yes" required>
+        <span>I agree that ALPHA BY RADAR may contact me on WhatsApp and email about my registration, my QR pass, and future ALPHA events. My details are used for ALPHA membership only and are never shared with other guests.</span>
+      </div>
+
+      <!-- attribution (auto-filled from the tracked link) -->
+      <input type="hidden" name="utm_source"><input type="hidden" name="utm_medium">
+      <input type="hidden" name="utm_campaign"><input type="hidden" name="utm_content">
+      <input type="hidden" name="content_id"><input type="hidden" name="referrer">
+      <input type="hidden" name="first_touch"><input type="hidden" name="last_touch">
+      <input type="hidden" name="notes">
+
+      <button class="cta" type="submit" id="submitBtn">Request My Complimentary Pass</button>
+      <a class="cta ghost" id="waRegister" href="#" target="_blank" rel="noopener" style="margin-top:12px">Or Register Via WhatsApp</a>
+      <div class="hint">Free entry · Registration required · No registration — no entry</div>
+    </form>
+
+    <div id="success">
+      <div class="ok">Registration Received</div>
+      <h3>Welcome to ALPHA</h3>
+      <p>Your application for <b style="color:var(--silver)">MUSICAL SYNDICATE</b> is in review.</p>
+      <p>Your complimentary QR pass and the exact timings arrive on WhatsApp before the event.</p>
+      <p style="font-family:var(--mono);font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:var(--silver-faint);margin-top:18px">No registration — no entry. You are registered.</p>
+      <a class="cta ghost" id="shareWa" href="#" target="_blank" rel="noopener" style="margin-top:22px">Invite Someone Who Belongs In This Room</a>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <div class="fm">
+    ALPHA <b>BY RADAR</b> · DUBAI<br>
+    A MOVEMENT · NOT A PARTY<br>
+    MEMBERS ONLY DATA — NEVER SHARED · NEVER SOLD<br>
+    <a href="https://www.instagram.com/alphabyradar" target="_blank" rel="noopener" style="color:var(--red);text-decoration:none;letter-spacing:.34em">@ALPHABYRADAR ON INSTAGRAM</a><br>
+    <a href="venues.html" style="color:var(--silver-dim);text-decoration:none">OWN A VENUE? → ALPHA INTELLIGENCE ENGINE</a>
+  </div>
+</footer>
+
+<script>
+/* ── CONFIG ── */
+var WA_NUMBER = '971505747537'; /* WhatsApp registration number — digits only, country code first */
+var TEST_MODE = (location.hostname === 'localhost' || location.hostname === '127.0.0.1' || location.protocol === 'file:');
+
+/* ── attribution capture: first-touch + last-touch (AIE v2.2 §5.4) ── */
+(function(){
+  var q = new URLSearchParams(location.search);
+  var touch = {
+    utm_source: q.get('utm_source')||'', utm_medium: q.get('utm_medium')||'',
+    utm_campaign: q.get('utm_campaign')||'musical-syndicate',
+    utm_content: q.get('utm_content')||'', content_id: q.get('c')||q.get('content_id')||'',
+    referrer: document.referrer||'', at: new Date().toISOString()
+  };
+  var hasSignal = touch.utm_source||touch.utm_content||touch.content_id||touch.referrer;
+  try{
+    if (hasSignal && !localStorage.getItem('alpha_first_touch'))
+      localStorage.setItem('alpha_first_touch', JSON.stringify(touch));
+    if (hasSignal) localStorage.setItem('alpha_last_touch', JSON.stringify(touch));
+  }catch(e){}
+  var f = document.getElementById('joinForm');
+  function set(n,v){ var el=f.querySelector('[name="'+n+'"]'); if(el) el.value=v; }
+  set('utm_source',touch.utm_source); set('utm_medium',touch.utm_medium);
+  set('utm_campaign',touch.utm_campaign); set('utm_content',touch.utm_content);
+  set('content_id',touch.content_id); set('referrer',touch.referrer);
+  try{
+    set('first_touch', localStorage.getItem('alpha_first_touch')||'');
+    set('last_touch', localStorage.getItem('alpha_last_touch')||'');
+  }catch(e){}
+})();
+
+/* ── WhatsApp registration fallback — always available ── */
+function waRegistrationLink(){
+  var f = document.getElementById('joinForm');
+  var src = f.content_id.value || f.utm_content.value || f.utm_source.value || 'direct';
+  var lines = [
+    'ALPHA REGISTRATION - MUSICAL SYNDICATE',
+    'Name: ' + (f.full_name.value || ''),
+    'Mobile: ' + (f.phone.value || ''),
+    'Email: ' + (f.email.value || ''),
+    'Role: ' + (f.industry_role.value || ''),
+    'Interest: ' + (f.main_interest.value || ''),
+    'Source: ' + src,
+    'I agree to be contacted by ALPHA BY RADAR about my registration and future events.'
+  ];
+  return 'https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent(lines.join('\n'));
+}
+var waBtn = document.getElementById('waRegister');
+waBtn.addEventListener('click', function(ev){ ev.preventDefault(); window.open(waRegistrationLink(), '_blank'); });
+
+function showSuccess(testNote){
+  var f = document.getElementById('joinForm');
+  f.style.display='none';
+  var s = document.getElementById('success'); s.style.display='block';
+  if (testNote){
+    var note = document.createElement('p');
+    note.style.cssText = 'font-family:monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:#f59e0b;margin-top:14px';
+    note.textContent = 'TEST MODE — running on this computer only. No data was sent. Deploy to Netlify to go live.';
+    s.appendChild(note);
+  }
+  var msg = encodeURIComponent('MUSICAL SYNDICATE — THE STAGE IS YOURS. Free entry, registration required: '+location.origin+location.pathname+'?utm_source=member-referral&c=referral');
+  document.getElementById('shareWa').href = 'https://wa.me/?text='+msg;
+  s.scrollIntoView({behavior:'smooth'});
+}
+
+/* ── submit (AJAX to Netlify Forms; test mode on localhost) ── */
+document.getElementById('joinForm').addEventListener('submit', function(ev){
+  ev.preventDefault();
+  var f = ev.target, btn = document.getElementById('submitBtn'), errBox = document.getElementById('errBox');
+  errBox.style.display='none';
+
+  var phone = f.phone.value.replace(/[^\d+]/g,'');
+  if(!/^\+?\d{9,15}$/.test(phone)){ errBox.textContent='Please enter a valid mobile number with country code, e.g. +9715XXXXXXXX.'; errBox.style.display='block'; return; }
+
+  /* combined notes column → imports cleanly into the ALPHA Command Centre */
+  var src = f.content_id.value || f.utm_content.value || f.utm_source.value || 'direct';
+  f.notes.value = 'Role: '+f.industry_role.value+' | Interest: '+f.main_interest.value+' | Source: '+src+' | Consent: yes';
+
+  if (TEST_MODE){ showSuccess(true); return; }
+
+  btn.disabled = true; btn.textContent = 'SUBMITTING…';
+  var body = new URLSearchParams(new FormData(f)).toString();
+  fetch('/', { method:'POST', headers:{'Content-Type':'application/x-www-form-urlencoded'}, body: body })
+    .then(function(r){
+      if(!r.ok) throw new Error('submit failed');
+      showSuccess(false);
+    })
+    .catch(function(){
+      btn.disabled=false; btn.textContent='REQUEST MY COMPLIMENTARY PASS';
+      errBox.textContent='The form could not submit right now — tap "REGISTER VIA WHATSAPP" below. Your registration counts the same.';
+      errBox.style.display='block';
+      waBtn.style.borderColor='#b3121a'; waBtn.style.color='#f2f3f6';
+      waBtn.scrollIntoView({behavior:'smooth', block:'center'});
+    });
+});
+</script>
+</body>
+</html>

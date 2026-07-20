@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Venue Intelligence — ALPHA Intelligence Engine | ALPHA BY RADAR</title>
+<meta name="description" content="Your venue doesn't need another promoter. It needs intelligence. ALPHA Intelligence Engine — a Venue Intelligence &amp; Business Optimization System for venues and club owners.">
+<meta property="og:title" content="Your venue doesn't need another promoter. It needs intelligence.">
+<meta property="og:description" content="Before spending money on marketing, understand exactly why your venue performs the way it does and how to increase revenue. Request a Venue Analysis.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://join-alphabyradar.netlify.app/venues.html">
+<meta property="og:image" content="https://join-alphabyradar.netlify.app/assets/alpha-logo-full.png">
+<meta property="og:image:width" content="1024">
+<meta property="og:image:height" content="1515">
+<meta property="og:image:type" content="image/png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Your venue doesn't need another promoter. It needs intelligence.">
+<meta name="twitter:description" content="Before spending money on marketing, understand exactly why your venue performs the way it does and how to increase revenue.">
+<meta name="twitter:image" content="https://join-alphabyradar.netlify.app/assets/alpha-logo-full.png">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/favicon-180.png">
+<link rel="icon" type="image/png" sizes="512x512" href="assets/favicon-512.png">
+<style>
+/* ALPHA BY RADAR — Black · Chrome Silver · Deep Red (sparingly). Cinematic, minimal. */
+:root{
+  --black:#070708; --panel:#0e0e10; --line:#1c1c20;
+  --silver:#c7c9d1; --silver-dim:#8a8c96; --silver-faint:#55575f;
+  --red:#b3121a; --red-dim:#3a0d10;
+  --mono:'Consolas','JetBrains Mono',monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+html{scroll-behavior:smooth;}
+body{background:var(--black);color:var(--silver);font-family:'Inter','SF Pro Display',system-ui,sans-serif;line-height:1.6;overflow-x:hidden;}
+.wrap{max-width:680px;margin:0 auto;padding:0 22px;position:relative;z-index:1;}
+a{color:var(--silver);}
+
+/* ambient radar scan line — behind all content */
+.scan-line-wrap{position:fixed;inset:0;overflow:hidden;pointer-events:none;z-index:0;}
+.scan-line{position:absolute;left:0;width:100%;height:2px;
+  background:linear-gradient(90deg,transparent,rgba(255,40,45,.95) 15%,rgba(255,90,80,1) 50%,rgba(255,40,45,.95) 85%,transparent);
+  box-shadow:0 0 22px 3px rgba(255,30,35,.65),0 0 6px 1px rgba(255,255,255,.5);
+  animation:scanSweep 8s linear infinite;}
+@keyframes scanSweep{
+  0%{top:-1%;opacity:0;}
+  6%{opacity:.95;}
+  50%{opacity:.95;}
+  94%{opacity:0;}
+  100%{top:101%;opacity:0;}
+}
+@media (prefers-reduced-motion: reduce){
+  .scan-line{display:none;}
+}
+
+/* header */
+header{padding:26px 0 0;text-align:center;position:relative;z-index:1;}
+.wordmark{font-family:var(--mono);font-size:12px;letter-spacing:.55em;color:var(--silver);text-transform:uppercase;}
+.wordmark b{color:var(--red);font-weight:400;}
+.brand-mark{width:56px;height:56px;display:block;margin:0 auto 12px;}
+.crumb{display:block;text-align:center;margin-top:14px;font-family:var(--mono);font-size:10px;letter-spacing:.3em;color:var(--silver-faint);text-transform:uppercase;text-decoration:none;}
+.crumb:hover{color:var(--silver-dim);}
+
+/* hero */
+.hero{padding:64px 0 40px;text-align:center;}
+.case{font-family:var(--mono);font-size:10px;letter-spacing:.4em;color:var(--silver-faint);text-transform:uppercase;margin-bottom:22px;}
+h1{font-size:clamp(26px,7vw,44px);font-weight:800;letter-spacing:.04em;line-height:1.14;color:#f2f3f6;text-transform:uppercase;}
+.divider{width:52px;height:1px;background:var(--red);margin:34px auto;}
+.lead{font-size:clamp(15px,4.2vw,18px);font-weight:300;color:var(--silver-dim);line-height:1.8;max-width:540px;margin:0 auto;}
+.meta{font-family:var(--mono);font-size:12px;letter-spacing:.18em;color:var(--silver-dim);text-transform:uppercase;line-height:2.3;}
+.meta b{color:var(--silver);font-weight:400;}
+
+/* cta */
+.cta{display:block;width:100%;margin-top:26px;padding:19px;text-align:center;background:var(--red);color:#fff;border:none;cursor:pointer;font-family:var(--mono);font-size:13px;letter-spacing:.32em;text-transform:uppercase;text-decoration:none;transition:background .2s;}
+.cta:hover{background:#d0161f;}
+.cta:not(.ghost){animation:ctaGlow 3.2s ease-in-out infinite;}
+.cta:not(.ghost):hover{animation:none;box-shadow:0 0 22px rgba(208,22,31,.7);}
+@keyframes ctaGlow{
+  0%,100%{box-shadow:0 0 0 rgba(179,18,26,0);}
+  50%{box-shadow:0 0 18px rgba(179,18,26,.55);}
+}
+@media (prefers-reduced-motion: reduce){
+  .cta:not(.ghost){animation:none;}
+}
+.cta.ghost{background:transparent;border:1px solid var(--line);color:var(--silver);}
+.cta.ghost:hover{border-color:var(--silver-faint);background:var(--panel);}
+
+/* sections */
+section{padding:54px 0 0;}
+h2{font-family:var(--mono);font-size:11px;letter-spacing:.42em;color:var(--red);text-transform:uppercase;margin-bottom:24px;font-weight:400;}
+.manifesto p{font-size:clamp(17px,4.6vw,22px);font-weight:300;color:#e8e9ee;line-height:1.75;margin-bottom:18px;letter-spacing:.01em;}
+.manifesto p b{font-weight:600;color:#fff;}
+
+/* numbered lists */
+.benefits{border:1px solid var(--line);}
+.benefit{display:flex;gap:16px;padding:16px 18px;border-bottom:1px solid var(--line);align-items:baseline;}
+.benefit:last-child{border-bottom:none;}
+.benefit .n{font-family:var(--mono);font-size:10px;color:var(--red);letter-spacing:.1em;flex-shrink:0;width:26px;}
+.benefit .t{font-size:14px;color:var(--silver);}
+.benefit .t b{color:#f2f3f6;font-weight:600;}
+
+/* final cta panel */
+.rule{margin:38px auto 0;border:1px solid var(--line);background:var(--panel);padding:22px 16px;text-align:center;}
+.rule div{font-family:var(--mono);letter-spacing:.3em;text-transform:uppercase;line-height:2.4;}
+.rule .r1{font-size:15px;color:#f2f3f6;}
+.rule .r2{font-size:12px;color:var(--silver-dim);}
+
+/* form */
+.formbox{border:1px solid var(--line);background:var(--panel);padding:30px 22px;margin-top:26px;}
+label{display:block;font-family:var(--mono);font-size:10px;letter-spacing:.3em;color:var(--silver-dim);text-transform:uppercase;margin:0 0 8px;}
+input[type=text],input[type=tel],input[type=email],select,textarea{
+  width:100%;padding:14px;background:#070708;border:1px solid var(--line);color:#f2f3f6;font-size:16px;font-family:inherit;outline:none;border-radius:0;-webkit-appearance:none;appearance:none;margin-bottom:20px;
+}
+textarea{min-height:96px;resize:vertical;line-height:1.6;}
+select{background-image:linear-gradient(45deg,transparent 49%,var(--silver-faint) 50%),linear-gradient(135deg,var(--silver-faint) 50%,transparent 51%);background-position:calc(100% - 20px) 24px,calc(100% - 15px) 24px;background-size:5px 5px;background-repeat:no-repeat;}
+input:focus,select:focus,textarea:focus{border-color:var(--red);}
+.hint{font-family:var(--mono);font-size:10px;letter-spacing:.16em;color:var(--silver-faint);text-transform:uppercase;text-align:center;margin-top:14px;line-height:2;}
+.err{display:none;background:var(--red-dim);border:1px solid var(--red);color:#f2b8bb;font-size:13px;padding:12px 14px;margin-bottom:18px;}
+
+/* success */
+#success{display:none;text-align:center;padding:46px 18px;border:1px solid var(--line);background:var(--panel);margin-top:26px;}
+#success .ok{font-family:var(--mono);font-size:11px;letter-spacing:.4em;color:var(--red);text-transform:uppercase;}
+#success h3{font-size:26px;color:#f2f3f6;margin:16px 0 10px;letter-spacing:.06em;text-transform:uppercase;}
+#success p{font-size:14px;color:var(--silver-dim);max-width:420px;margin:0 auto 8px;}
+
+/* footer */
+footer{margin-top:70px;padding:34px 0 46px;border-top:1px solid var(--line);text-align:center;position:relative;z-index:1;}
+footer .fm{font-family:var(--mono);font-size:10px;letter-spacing:.34em;color:var(--silver-faint);text-transform:uppercase;line-height:2.6;}
+footer .fm b{color:var(--silver-dim);font-weight:400;}
+footer .fm a{color:var(--silver-dim);text-decoration:none;}
+footer .fm a:hover{color:var(--silver);}
+</style>
+</head>
+<body>
+
+<div class="scan-line-wrap" aria-hidden="true"><div class="scan-line"></div></div>
+
+<header>
+  <img class="brand-mark" src="assets/alpha-mark.png" alt="ALPHA BY RADAR" width="56" height="56">
+  <div class="wordmark">ALPHA <b>·</b> BY RADAR</div>
+  <a class="crumb" href="index.html">← Community &amp; Events</a>
+</header>
+
+<div class="wrap">
+
+  <div class="hero">
+    <div class="case">ALPHA Intelligence Engine · For Venues &amp; Club Owners</div>
+    <h1>Your venue doesn't need<br>another promoter.<br>It needs intelligence.</h1>
+    <div class="divider"></div>
+    <p class="lead">Before spending money on marketing, understand exactly why your venue performs the way it does and how to increase revenue.</p>
+    <a class="cta" href="#enquire">Request a Venue Analysis</a>
+  </div>
+
+  <section class="manifesto">
+    <h2>The Consultancy</h2>
+    <p>Most venues buy marketing before they understand their own business. Money goes out. Nothing changes. The problem was never the promotion — it was what the promotion was built on.</p>
+    <p><b>ALPHA Intelligence Engine is a Venue Intelligence &amp; Business Optimization System.</b> One venue goes in. One consultancy report comes out.</p>
+    <p>Before a single dirham goes into marketing, it answers five questions: why your venue performs the way it does, where the untapped revenue is, whether an event actually fits your room, how to raise revenue — not just attendance — and what must be fixed <b>before</b> marketing begins.</p>
+  </section>
+
+  <section>
+    <h2>What We Analyse</h2>
+    <div class="benefits">
+      <div class="benefit"><span class="n">01</span><span class="t"><b>Business Intelligence</b> — how the business actually performs today</span></div>
+      <div class="benefit"><span class="n">02</span><span class="t"><b>Digital Presence</b> — how visible, or invisible, your venue is when people search</span></div>
+      <div class="benefit"><span class="n">03</span><span class="t"><b>Area Intelligence</b> — your catchment area and what it means for business</span></div>
+      <div class="benefit"><span class="n">04</span><span class="t"><b>Audience Intelligence</b> — who your real audience is, and who it should be</span></div>
+      <div class="benefit"><span class="n">05</span><span class="t"><b>Competitor Intelligence</b> — where competitors win, and the market gap you can own</span></div>
+      <div class="benefit"><span class="n">06</span><span class="t"><b>Revenue Opportunities</b> — untapped income beyond the door</span></div>
+      <div class="benefit"><span class="n">07</span><span class="t"><b>Event Suitability</b> — which events fit your room, and which will fail in it</span></div>
+      <div class="benefit"><span class="n">08</span><span class="t"><b>Marketing Strategy</b> — defined before money is spent, never after</span></div>
+      <div class="benefit"><span class="n">09</span><span class="t"><b>Learning System</b> — every event feeds data back, so your venue gets smarter</span></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>What You Receive</h2>
+    <div class="benefits">
+      <div class="benefit"><span class="n">01</span><span class="t"><b>Business Health Score</b></span></div>
+      <div class="benefit"><span class="n">02</span><span class="t"><b>Digital Visibility Score</b></span></div>
+      <div class="benefit"><span class="n">03</span><span class="t"><b>Venue Intelligence Report</b></span></div>
+      <div class="benefit"><span class="n">04</span><span class="t"><b>Revenue Opportunity Map</b></span></div>
+      <div class="benefit"><span class="n">05</span><span class="t"><b>Audience Intelligence Report</b></span></div>
+      <div class="benefit"><span class="n">06</span><span class="t"><b>Competitor Analysis</b></span></div>
+      <div class="benefit"><span class="n">07</span><span class="t"><b>Venue Suitability Score</b></span></div>
+      <div class="benefit"><span class="n">08</span><span class="t"><b>Top 10 Consultant Recommendations</b></span></div>
+      <div class="benefit"><span class="n">09</span><span class="t"><b>Marketing Blueprint</b></span></div>
+      <div class="benefit"><span class="n">10</span><span class="t"><b>Learning Report</b> after every event</span></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>How We Work — The RADAR Method</h2>
+    <div class="benefits">
+      <div class="benefit"><span class="n">R</span><span class="t"><b>Research</b> — facts first: the venue, the area, the audience, the competition</span></div>
+      <div class="benefit"><span class="n">A</span><span class="t"><b>Analyse</b> — scores, gaps and causes; every score decomposable</span></div>
+      <div class="benefit"><span class="n">D</span><span class="t"><b>Design</b> — the plan: revenue moves, event fit, marketing blueprint</span></div>
+      <div class="benefit"><span class="n">A</span><span class="t"><b>Activate</b> — execution with tracked links; every action measurable</span></div>
+      <div class="benefit"><span class="n">R</span><span class="t"><b>Review</b> — results measured, lessons written back into your venue file</span></div>
+    </div>
+  </section>
+
+  <section class="manifesto">
+    <h2>Why ALPHA Is Different</h2>
+    <p>Every recommendation is <b>evidence based</b>.</p>
+    <p>Every score is <b>decomposable</b>.</p>
+    <p><b>No statistics are invented.</b></p>
+    <p>Every event becomes <b>a case study</b>.</p>
+    <p>Every venue becomes <b>smarter after every event</b>.</p>
+  </section>
+
+  <section>
+    <div class="rule">
+      <div class="r1">One Venue In.</div>
+      <div class="r1">One Consultancy Report Out.</div>
+      <div class="r2">Evidence · Not Opinions</div>
+    </div>
+    <a class="cta" href="#enquire">Request a Venue Analysis</a>
+  </section>
+
+  <section id="enquire">
+    <h2>Request a Venue Analysis</h2>
+
+    <form id="venueForm" class="formbox" name="venue-enquiry" method="POST" data-netlify="true" netlify-honeypot="company">
+      <input type="hidden" name="form-name" value="venue-enquiry">
+      <p style="display:none"><label>Company <input name="company"></label></p>
+
+      <div class="err" id="errBox"></div>
+
+      <label for="v_venue">Venue Name *</label>
+      <input type="text" id="v_venue" name="venue_name" required>
+
+      <label for="v_type">Business Type *</label>
+      <select id="v_type" name="business_type" required>
+        <option value="">Select…</option>
+        <option>Nightclub</option><option>Bar / Lounge</option>
+        <option>Restaurant &amp; Lounge</option><option>Beach / Pool Club</option>
+        <option>Hotel Venue</option><option>Café / Day Concept</option>
+        <option>Event Space</option><option>Other</option>
+      </select>
+
+      <label for="v_location">Location *</label>
+      <input type="text" id="v_location" name="location" placeholder="Area · City" required>
+
+      <label for="v_owner">Owner Name *</label>
+      <input type="text" id="v_owner" name="owner_name" autocomplete="name" required>
+
+      <label for="v_email">Email *</label>
+      <input type="email" id="v_email" name="email" autocomplete="email" required>
+
+      <label for="v_whatsapp">WhatsApp *</label>
+      <input type="tel" id="v_whatsapp" name="whatsapp" autocomplete="tel" placeholder="+971 5X XXX XXXX" required>
+
+      <label for="v_challenges">Current Challenges *</label>
+      <textarea id="v_challenges" name="challenges" placeholder="Low weekday footfall · weak digital presence · wrong crowd · flat revenue…" required></textarea>
+
+      <label for="v_best">Best Business Day *</label>
+      <select id="v_best" name="best_day" required>
+        <option value="">Select…</option>
+        <option>Monday</option><option>Tuesday</option><option>Wednesday</option>
+        <option>Thursday</option><option>Friday</option><option>Saturday</option><option>Sunday</option>
+      </select>
+
+      <label for="v_weak">Weakest Business Day *</label>
+      <select id="v_weak" name="weakest_day" required>
+        <option value="">Select…</option>
+        <option>Monday</option><option>Tuesday</option><option>Wednesday</option>
+        <option>Thursday</option><option>Friday</option><option>Saturday</option><option>Sunday</option>
+      </select>
+
+      <label for="v_footfall">Average Weekly Footfall *</label>
+      <select id="v_footfall" name="weekly_footfall" required>
+        <option value="">Select…</option>
+        <option>Under 200</option><option>200 – 500</option><option>500 – 1,000</option>
+        <option>1,000 – 2,500</option><option>Over 2,500</option><option>Not measured</option>
+      </select>
+
+      <label for="v_message">Message *</label>
+      <textarea id="v_message" name="message" placeholder="Tell us about your venue and what you want to achieve." required></textarea>
+
+      <!-- attribution (auto-filled from the tracked link) -->
+      <input type="hidden" name="utm_source"><input type="hidden" name="utm_medium">
+      <input type="hidden" name="utm_campaign"><input type="hidden" name="utm_content">
+      <input type="hidden" name="content_id"><input type="hidden" name="referrer">
+      <input type="hidden" name="first_touch"><input type="hidden" name="last_touch">
+
+      <button class="cta" type="submit" id="submitBtn">Request My Venue Analysis</button>
+      <a class="cta ghost" id="waEnquire" href="#" target="_blank" rel="noopener" style="margin-top:12px">Or Enquire Via WhatsApp</a>
+      <div class="hint">Confidential · Your business data is never shared · Never sold</div>
+    </form>
+
+    <div id="success">
+      <div class="ok">Enquiry Received</div>
+      <h3>The Analysis Begins</h3>
+      <p>Your venue analysis request is in review.</p>
+      <p>We reply on WhatsApp or email within 48 hours with the next step.</p>
+      <p style="font-family:var(--mono);font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:var(--silver-faint);margin-top:18px">One venue in — one consultancy report out.</p>
+      <a class="cta ghost" id="waDirect" href="#" target="_blank" rel="noopener" style="margin-top:22px">Message Us Directly On WhatsApp</a>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <div class="fm">
+    ALPHA <b>BY RADAR</b> · DUBAI<br>
+    ALPHA INTELLIGENCE ENGINE · VENUE CONSULTING<br>
+    <a href="https://www.instagram.com/alphabyradar" target="_blank" rel="noopener" style="color:var(--red);text-decoration:none;letter-spacing:.34em">@ALPHABYRADAR ON INSTAGRAM</a><br>
+    <a href="index.html">JOINING AS A MEMBER? → COMMUNITY &amp; EVENTS</a>
+  </div>
+</footer>
+
+<script>
+/* ── CONFIG ── */
+var WA_NUMBER = '971505747537'; /* WhatsApp number — digits only, country code first */
+var TEST_MODE = (location.hostname === 'localhost' || location.hostname === '127.0.0.1' || location.protocol === 'file:');
+
+/* ── attribution capture: first-touch + last-touch (AIE v2.2 §5.4) ── */
+(function(){
+  var q = new URLSearchParams(location.search);
+  var touch = {
+    utm_source: q.get('utm_source')||'', utm_medium: q.get('utm_medium')||'',
+    utm_campaign: q.get('utm_campaign')||'venue-consulting',
+    utm_content: q.get('utm_content')||'', content_id: q.get('c')||q.get('content_id')||'',
+    referrer: document.referrer||'', at: new Date().toISOString()
+  };
+  var hasSignal = touch.utm_source||touch.utm_content||touch.content_id||touch.referrer;
+  try{
+    if (hasSignal && !localStorage.getItem('alpha_first_touch'))
+      localStorage.setItem('alpha_first_touch', JSON.stringify(touch));
+    if (hasSignal) localStorage.setItem('alpha_last_touch', JSON.stringify(touch));
+  }catch(e){}
+  var f = document.getElementById('venueForm');
+  function set(n,v){ var el=f.querySelector('[name="'+n+'"]'); if(el) el.value=v; }
+  set('utm_source',touch.utm_source); set('utm_medium',touch.utm_medium);
+  set('utm_campaign',touch.utm_campaign); set('utm_content',touch.utm_content);
+  set('content_id',touch.content_id); set('referrer',touch.referrer);
+  try{
+    set('first_touch', localStorage.getItem('alpha_first_touch')||'');
+    set('last_touch', localStorage.getItem('alpha_last_touch')||'');
+  }catch(e){}
+})();
+
+/* ── WhatsApp enquiry fallback — always available ── */
+function waEnquiryLink(){
+  var f = document.getElementById('venueForm');
+  var src = f.content_id.value || f.utm_content.value || f.utm_source.value || 'direct';
+  var lines = [
+    'ALPHA VENUE ANALYSIS REQUEST',
+    'Venue: ' + (f.venue_name.value || ''),
+    'Type: ' + (f.business_type.value || ''),
+    'Location: ' + (f.location.value || ''),
+    'Owner: ' + (f.owner_name.value || ''),
+    'Email: ' + (f.email.value || ''),
+    'WhatsApp: ' + (f.whatsapp.value || ''),
+    'Challenges: ' + (f.challenges.value || ''),
+    'Best day: ' + (f.best_day.value || '') + ' / Weakest day: ' + (f.weakest_day.value || ''),
+    'Weekly footfall: ' + (f.weekly_footfall.value || ''),
+    'Message: ' + (f.message.value || ''),
+    'Source: ' + src
+  ];
+  return 'https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent(lines.join('\n'));
+}
+var waBtn = document.getElementById('waEnquire');
+waBtn.addEventListener('click', function(ev){ ev.preventDefault(); window.open(waEnquiryLink(), '_blank'); });
+
+function showSuccess(testNote){
+  var f = document.getElementById('venueForm');
+  f.style.display='none';
+  var s = document.getElementById('success'); s.style.display='block';
+  if (testNote){
+    var note = document.createElement('p');
+    note.style.cssText = 'font-family:monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:#f59e0b;margin-top:14px';
+    note.textContent = 'TEST MODE — running on this computer only. No data was sent. Deploy to Netlify to go live.';
+    s.appendChild(note);
+  }
+  document.getElementById('waDirect').href = 'https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent('ALPHA VENUE ANALYSIS — I just sent an enquiry for my venue.');
+  s.scrollIntoView({behavior:'smooth'});
+}
+
+/* ── submit (AJAX to Netlify Forms; test mode on localhost) ── */
+document.getElementById('venueForm').addEventListener('submit', function(ev){
+  ev.preventDefault();
+  var f = ev.target, btn = document.getElementById('submitBtn'), errBox = document.getElementById('errBox');
+  errBox.style.display='none';
+
+  var phone = f.whatsapp.value.replace(/[^\d+]/g,'');
+  if(!/^\+?\d{9,15}$/.test(phone)){ errBox.textContent='Please enter a valid WhatsApp number with country code, e.g. +9715XXXXXXXX.'; errBox.style.display='block'; return; }
+
+  if (TEST_MODE){ showSuccess(true); return; }
+
+  btn.disabled = true; btn.textContent = 'SUBMITTING…';
+  var body = new URLSearchParams(new FormData(f)).toString();
+  fetch('/', { method:'POST', headers:{'Content-Type':'application/x-www-form-urlencoded'}, body: body })
+    .then(function(r){
+      if(!r.ok) throw new Error('submit failed');
+      showSuccess(false);
+    })
+    .catch(function(){
+      btn.disabled=false; btn.textContent='REQUEST MY VENUE ANALYSIS';
+      errBox.textContent='The form could not submit right now — tap "OR ENQUIRE VIA WHATSAPP" below. Your enquiry counts the same.';
+      errBox.style.display='block';
+      waBtn.style.borderColor='#b3121a'; waBtn.style.color='#f2f3f6';
+      waBtn.scrollIntoView({behavior:'smooth', block:'center'});
+    });
+});
+</script>
+</body>
+</html>
